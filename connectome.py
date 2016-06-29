@@ -35,7 +35,7 @@ if not disembodied:
         pwm_power = 0
         def set_speed(speed):
           global pwm_power
-          pwm_power = speed/150
+          pwm_power = speed/150.0
         def stop(): # just stop
           pwm.set(PWMO1a, 0)
           pwm.set(PWMO1b, 0)
