@@ -24,7 +24,28 @@ verbosity = parser.parse_args().verbose
 print "Running on Robot: " + str(not disembodied)
 
 if not disembodied:
-        from gopigo import fwd, bwd, left_rot, right_rot, stop, set_speed, us_dist, volt
+        #from gopigo import fwd, bwd, left_rot, right_rot, stop, set_speed, us_dist, volt
+        import pwm
+        
+        PWMEN1 = 18
+        PWMO1a = 4
+        PWMO1b = 17
+        pwm_power = 0
+        def set_speed(speed):
+          pwm_power = speed/150
+        def stop(): # just stop
+          pwm.set(PWMO1a, 0)
+          pwm.set(PWMO1b, 0)
+        def fwd(): # straight line
+          pwm.set(PWMO1a, pwm_power)
+          pwm.set(PWMO1b, 0)
+        def bwd():
+          pwm.set(PWMO1a, 0)
+          pwm.set(PWMO1b, pwm_power)
+        def left_rot(): # rotare on place
+          pass
+        def right_rot():
+          pass
 
 import time
 import copy
@@ -4922,7 +4943,7 @@ dist=0
 
 if not disembodied:
         set_speed(120)
-        print "Voltage: ", volt()
+        #print "Voltage: ", volt()
 
 tfood = 0
 
