@@ -26,6 +26,7 @@ print "Running on Robot: " + str(not disembodied)
 if not disembodied:
         #from gopigo import fwd, bwd, left_rot, right_rot, stop, set_speed, us_dist, volt
         import pwm
+        import random
         
         PWMEN1 = 18
         PWMO1a = 4
@@ -46,6 +47,8 @@ if not disembodied:
           pass
         def right_rot():
           pass
+        def us_dist(something):
+          return random.random()*10
         
         pwm.set(PWMEN1, 1)
         pwm.set(PWMO1a, 0)
