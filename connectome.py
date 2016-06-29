@@ -31,16 +31,20 @@ if not disembodied:
         PWMEN1 = 18
         PWMO1a = 4
         PWMO1b = 17
+        global pwm_power
         pwm_power = 0
         def set_speed(speed):
+          global pwm_power
           pwm_power = speed/150
         def stop(): # just stop
           pwm.set(PWMO1a, 0)
           pwm.set(PWMO1b, 0)
         def fwd(): # straight line
+          global pwm_power
           pwm.set(PWMO1a, pwm_power)
           pwm.set(PWMO1b, 0)
         def bwd():
+          global pwm_power
           pwm.set(PWMO1a, 0)
           pwm.set(PWMO1b, pwm_power)
         def left_rot(): # rotare on place
