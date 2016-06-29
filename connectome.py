@@ -46,6 +46,10 @@ if not disembodied:
           pass
         def right_rot():
           pass
+        
+        pwm.set(PWMEN1, 1)
+        pwm.set(PWMO1a, 0)
+        pwm.set(PWMO1b, 0)
 
 import time
 import copy
