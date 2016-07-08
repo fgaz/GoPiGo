@@ -53,11 +53,12 @@ if not disembodied:
         def bwd():
           global pwm_power
           pwm.set(PWMO1a, 0)
-          pwm.set(PWMO1b, pwm_power)
+          #pwm.set(PWMO1b, pwm_power)
+          pwm.set(PWMO1b, 1)#sorry
         def left_rot(): # rotare on place
-          pass
+          bwd()#sorry
         def right_rot():
-          pass
+          bwd()#sorry
         def us_dist(something):
           if not webcam:
             return random.random()*10
