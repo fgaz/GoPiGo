@@ -23,6 +23,13 @@ verbosity = parser.parse_args().verbose
 
 print "Running on Robot: " + str(not disembodied)
 
+webcam = True
+
+if webcam:
+  import cv2
+  import numpy as np
+  cap = cv2.VideoCapture(0)
+
 if not disembodied:
         #from gopigo import fwd, bwd, left_rot, right_rot, stop, set_speed, us_dist, volt
         import pwm
@@ -52,7 +59,20 @@ if not disembodied:
         def right_rot():
           pass
         def us_dist(something):
-          return random.random()*10
+          if not webcam:
+            return random.random()*10
+          _, frame = cap.read()
+          hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+          lower_blue = np.array([25,10,10])
+          upper_blue = np.array([35,255,255])
+          mask = cv2.inRange(hsv, lower_blue, upper_blue)
+          res = cv2.bitwise_and(frame,frame, mask= mask)
+          totalColor = sum(cv2.sumElems(res))
+          if totalColor == 0:
+            totalColor = 0.000001
+          dist = 1/(totalColor/300000000)
+          print("dist:"+str(dist))
+          return dist
         
         pwm.set(PWMEN1, 1)
         pwm.set(PWMO1a, 0)
