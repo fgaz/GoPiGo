@@ -4984,6 +4984,7 @@ def main():
         (sonar) is stimulated and then we fire nose touch neurites.
         """
 
+        global tfood
         while True:
                 if not disembodied:
                         dist = us_dist(15)
