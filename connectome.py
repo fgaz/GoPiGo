@@ -63,7 +63,7 @@ if not disembodied:
             return random.random()*10
           _, frame = cap.read()
           hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-          lower_blue = np.array([15,10,10])
+          lower_blue = np.array([7,10,10])
           upper_blue = np.array([35,255,255])
           mask = cv2.inRange(hsv, lower_blue, upper_blue)
           res = cv2.bitwise_and(frame,frame, mask= mask)
